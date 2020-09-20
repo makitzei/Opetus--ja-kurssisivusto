@@ -4,7 +4,7 @@ Sovelluksen toimivat toiminnallisuudet:
 * Käyttäjä voi rekisteröityä tai kirjautua sovellukseen. Salasana kryptataan tietokantaan.
 * Kirjautunutta käyttäjää tervehtii aloitussivu, jossa on alustavasti kissan kuva. Tähän tullee myöhemmin oman profiilikuvan lisäämisen mahdollisuus tai vastaava.
 * Aloitussivulta on mahdollisuus luoda uusi kurssi, joka sisältää otsikon, tekstiä, vaikeusasteen ja avainsanan. Aloitussivulle myös listautuvat kaikki omat kurssit.
-*Kurssilistauksen kautta on mahdollista päästä kurssisivulle, josta voi luoda kysymyksiä kurssiin liittyen. Tällä hetkellä kysymykset tallentuvat tietokantaan, mutta vastausvaihtoehdot eivät.
+* Kurssilistauksen kautta on mahdollista päästä kurssisivulle, josta voi luoda kysymyksiä kurssiin liittyen. Tällä hetkellä kysymykset tallentuvat tietokantaan, mutta vastausvaihtoehdot eivät.
 
 Vielä tekemättä:
 * Sovellus ei vielä erota eri tason käyttäjiä (opettaja, oppilas, ylläpitäjä) toisistaan.
