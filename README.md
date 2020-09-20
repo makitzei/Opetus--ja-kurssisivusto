@@ -1,29 +1,17 @@
-Kuvaus: Helsingin yliopiston Tietokantasovellus-kurssin harjoitustyö syksyllä 2020. Kurssi- ja opetussivusto, johon rekisteröidytään joko opettajaksi tai oppilaaksi. Ylläpito-oikeuksia voi saada pyytämällä pääkäyttäjältä.
+Kuvaus: Helsingin yliopiston Tietokantasovellus-kurssin harjoitustyö syksyllä 2020. Kurssi- ja opetussivusto, johon rekisteröidytään joko opettajaksi, oppilaaksi tai ylläpitäjäksi.
 
-Opettajat voivat
+Sovelluksen toimivat toiminnallisuudet:
+* Käyttäjä voi rekisteröityä tai kirjautua sovellukseen. Salasana kryptataan tietokantaan.
+* Kirjautunutta käyttäjää tervehtii aloitussivu, jossa on alustavasti kissan kuva. Tähän tullee myöhemmin oman profiilikuvan lisäämisen mahdollisuus tai vastaava.
+* Aloitussivulta on mahdollisuus luoda uusi kurssi, joka sisältää otsikon, tekstiä, vaikeusasteen ja avainsanan. Aloitussivulle myös listautuvat kaikki omat kurssit.
+*Kurssilistauksen kautta on mahdollista päästä kurssisivulle, josta voi luoda kysymyksiä kurssiin liittyen. Tällä hetkellä kysymykset tallentuvat tietokantaan, mutta vastausvaihtoehdot eivät.
 
-    -luoda kursseja ja niihin liittyviä tehtäviä
-		- Tehtävät ovat automaattisesti tarkistettavia joko monivalinta- tai korkeintaan parin sanan 			avoin teksti -vastauksia.
-   		- Kurssitekstit voivat olla opettajan valinnan mukaan joko julkisia tai suljettuja, mutta 			tehtävien näkemiseen ja suorittamiseen tulee olla kirjautunut ja kurssin valinnut oppilas.
-   	 	- Opettaja näkee yksittäisten oppilaiden edistymisen lisäksi kurssiyhteenvedon kurssin 		kaikkien osallistujien etenemisestä.
+Vielä tekemättä:
+* Sovellus ei vielä erota eri tason käyttäjiä (opettaja, oppilas, ylläpitäjä) toisistaan.
+* Kursseille ei voi vielä liittyä ja sitä myöten opettaja ei näe kurssilla olevia opiskelijoita.
+* Kaikki kursseihin liittyvät hakutoiminnot on toteuttamatta: kurssien hakeminen nimellä tai avainsanalla.
+* Kysymysten vastausvaihtoehdot ja niiden oikein/väärin-tieto ei tallennu vielä tietokantaan, vaikka taulu sille on olemassa.
+* Oppilaiden edistymistä ei voi seurata vielä mistään.
 
-    -merkitä kurssin suoritetuksi ja antaa siitä sanallisen arvion
-    -nähdä kirjautuneina etusivullaan koosteen kursseistaan ja ilmoitukset, jos jonkun oppilaan 		kurssisuoritus on siirtynyt "Odottaa hyväksyntää" -tilaan
-    - hakea omia ja julkisia kursseja sivustolta nimellä tai asiasanalla
-    - hakea kurssiensa oppilaita nimeltä ja nähdä näiden suorituksia.
+Sovellusta voi testata Herokussa osoitteessa https://dashboard.heroku.com/apps/ancient-plateau-04608.
 
-Oppilaat voivat
-
-    liittyä kursseille ja seurata omaa edistymistään kursseilla
-    nähdä kirjautuneina koosteen valitsemistaan kursseista ja niiden suoritustilanteesta
-    saada kurssista automaattisesti alustavan arvosanan tekemiensä tehtävien perusteella ja myöhemmin opettajan korjatun ja kommentoidun arvion
-    hakea kursseja niiden nimen tai niihin liittyvien asiasanojen mukaan
-    katsoa saamiaan arvosanoja ja tehdä niistä aikaleimallisen koosteen kuin opintosuoritusotteen.
-
-Ylläpitäjät voivat
-
-    poistaa oppilaita, opettajia, tehtäviä ja kursseja sivustolta
-    nähdä koosteen kaikista kursseista sekä opettajista ja oppilaista
-    nähdä opettajien ja oppilaiden näkymät lukuunottamatta mahdollista viestintää.
-
-Jos jää aikaa, voisi toteuttaa pientä viestintämahdollisuutta opettajan ja oppilaan välillä kurssin sisällä. Lisäksi tehtävien suorittamista voisi rajoittaa jotenkin ajallisesti.
