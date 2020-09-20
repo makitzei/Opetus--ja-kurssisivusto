@@ -13,5 +13,5 @@ Vielä tekemättä:
 * Kysymysten vastausvaihtoehdot ja niiden oikein/väärin-tieto ei tallennu vielä tietokantaan, vaikka taulu sille on olemassa.
 * Oppilaiden edistymistä ei voi seurata vielä mistään.
 
-Sovellusta voi testata Herokussa osoitteessa https://dashboard.heroku.com/apps/ancient-plateau-04608.
+Sovellusta voi testata Herokussa osoitteessa https://ancient-plateau-04608.herokuapp.com/
 
