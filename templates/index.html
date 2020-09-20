@@ -1,0 +1,35 @@
+<title>Opetussovellus</title>
+<h1>Etusivu</h1>
+<b>Tervetuloa</b> <i>opetussovellukseen</i>!
+<p>Rekisteröidy käyttäjäksi tai kirjaudu sisään.</p>
+
+<br>
+<form action="/login" method="POST">
+<p>Tunnus:<br>
+<input type="text" name="username"></p>
+<p>Salasana:<br>
+<input type="password" name="password"></p>
+<input type="submit" value="Kirjaudu">
+</form>
+<br>
+<p>
+<form action="/register" method="POST">
+Rekisteröidy käyttäjäksi:
+<p>
+Etunimi: <input type="text" name="firstname">
+<p>
+Sukunimi: <input type="text" name="lastname">
+<p>
+Olen
+<p>
+<input type="radio" name="status" value="opettaja"> opettaja
+<input type="radio" name="status" value="oppilas"> oppilas
+<input type="radio" name="status" value="ylläpitäjä"> ylläpitäjä
+<p>
+Valitse käyttäjätunnus: <input type="text" name="username">
+<p>
+Valitse salasana: <input type="text" name="password">
+<p>
+<input type="submit" value="Lähetä">
+</form>
+    

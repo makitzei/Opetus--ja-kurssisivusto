@@ -1,0 +1,18 @@
+{{ message }}
+
+<h1> {{ title }} </h1>
+<p>
+<i>{{ level }} (1 = helppo, 2 = keskitaso, 3 = vaikea)</i>
+<p>
+<i>{{ keyword }}</i>
+<p>
+{{ content }}
+<p>
+<hr>
+{% for question in questions %}
+Kysymys: {{ questions[1] }}
+</hr>
+{% endfor %}
+<a href="/courses/{{ id }}/newquestion">Luo uusi kysymys</a>
+<p>
+<a href="/welcome">Takaisin</a>

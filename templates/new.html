@@ -1,0 +1,24 @@
+<h1>Uuden kurssin luominen</h1>
+
+<br>
+<form action="/new" method="POST">
+Kurssin nimi:
+<p>
+<input type="text" name="title">
+<p>
+Teksti: 
+<p>
+<textarea name="content" rows="20" cols="60"></textarea>
+<p>
+Vaativuustaso:
+<input type="radio" name="level" value="1"> helppo
+<input type="radio" name="level" value="2"> keskivaikea
+<input type="radio" name="level" value="3"> vaikea
+<p>
+Avainsana:
+<p>
+<input type="text" name="keyword">
+<p></p>
+<input type="submit" value="Luo kurssi">
+</form>
+

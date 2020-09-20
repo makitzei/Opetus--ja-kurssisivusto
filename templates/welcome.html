@@ -1,0 +1,21 @@
+<title>Opetussovellus</title>
+
+<h1>Moikka {{ name }}!</h1>
+
+<br>
+Toiminnot:
+<ul>
+    <li><a href="/new">Luo kurssi</a></li>
+    <li>Omat kurssit</li>
+    <ul>
+        {% for course in courses %}
+        <li>Otsikko: {{ course[1] }} <a href="/courses/{{ course[0] }}">Kurssisivulle</a> </li>
+        {% endfor %}
+    </ul>
+    <li>Selaa käyttäjiä</li>
+</ul>
+
+<br>
+<img src="static/iiris.png" width="250">
+<br>
+<a href="/logout">Kirjaudu ulos</a>
