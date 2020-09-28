@@ -35,8 +35,17 @@ def login():
 def welcome():
     id = users.user_id()
     nimi = users.user_firstname(users.user_all(id))
-    course = courses.get_course_with_teacher(id)
-    return render_template("welcome.html", name = nimi, courses = course)
+    if users.is_admin(id):   
+        return render_template("welcome_admin.html", name = nimi)
+    elif users.is_teacher(id):
+        course = courses.get_course_with_teacher(id)
+        return render_template("welcome_teacher.html", name = nimi, courses = course)
+    elif users.is_student(id):
+        return render_template("welcome_student.html", name = nimi)
+    else:
+        return render_template("error.html", message="Jokin meni vikaan")
+
+    
 
 
 @app.route("/logout")

@@ -41,6 +41,33 @@ def user_firstname(user):
 def logout():
     del session["user_id"]
 
+def is_admin(id):
+    allow = False
+    sql = "SELECT status FROM users WHERE id = :id"
+    result = db.session.execute(sql, {"id":id})
+    status = result.fetchone()
+    if status[0] == "admin":
+        allow = True
+    return allow
+
+def is_teacher(id):
+    allow = False
+    sql = "SELECT status FROM users WHERE id = :id"
+    result = db.session.execute(sql, {"id":id})
+    status = result.fetchone()
+    if status[0] == "opettaja":
+        allow = True
+    return allow
+
+def is_student(id):
+    allow = False
+    sql = "SELECT status FROM users WHERE id = :id"
+    result = db.session.execute(sql, {"id":id})
+    status = result.fetchone()
+    if status[0] == "oppilas":
+        allow = True
+    return allow
+
 
 
 
