@@ -10,17 +10,20 @@ from db import db
 def index():
     return render_template("index.html")
 
-@app.route("/register", methods=["POST"])
+@app.route("/register", methods=["GET","POST"])
 def register():
-    firstname=request.form["firstname"]
-    status=request.form["status"]
-    lastname=request.form["lastname"]
-    username=request.form["username"] 
-    password=request.form["password"]
-    if users.register(firstname,lastname,username,password,status):
-        return render_template("welcome.html", name=firstname)
-    else:
-        return render_template("error.html", message="Rekisteröinti ei onnistunut")
+    if request.method == "GET":
+        return render_template("register.html")
+    if request.method == "POST":
+        firstname=request.form["firstname"]
+        status=request.form["status"]
+        lastname=request.form["lastname"]
+        username=request.form["username"] 
+        password=request.form["password"]
+        if users.register(firstname,lastname,username,password,status):
+            return redirect("/welcome")
+        else:
+            return render_template("error.html", message="Rekisteröinti ei onnistunut")
 
 @app.route("/login",methods=["POST"])
 def login():
@@ -45,14 +48,10 @@ def welcome():
     else:
         return render_template("error.html", message="Jokin meni vikaan")
 
-    
-
-
 @app.route("/logout")
 def logout():
     users.logout
     return redirect("/")
-
 
 @app.route("/new", methods=["GET", "POST"])
 def new():
