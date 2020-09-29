@@ -3,7 +3,7 @@
 <b>Tervetuloa</b> <i>opetussovellukseen</i>!
 <p><a href="/">Kirjaudu sisään</a> tai rekisteröidy käyttäjäksi</p>
 
-<form action="/register" method="POST">
+<form action="/register" method="POST" onsubmit="return check(this)">
 Rekisteröidy:
 <p>
 Etunimi: <input type="text" name="firstname">
@@ -12,9 +12,8 @@ Sukunimi: <input type="text" name="lastname">
 <p>
 Olen
 <p>
+<input type="radio" name="status" value="oppilas" checked required/> oppilas
 <input type="radio" name="status" value="opettaja"> opettaja
-<input type="radio" name="status" value="oppilas"> oppilas
-<!--<input type="radio" name="status" value="ylläpitäjä"> ylläpitäjä-->
 <p>
 Valitse käyttäjätunnus: <input type="text" name="username">
 <p>
@@ -22,3 +21,45 @@ Valitse salasana: <input type="password" name="password">
 <p>
 <input type="submit" value="Lähetä">
 </form>
+
+<script>
+function check(form) {
+    if (form.firstname.value.length > 30) {
+        alert("Etunimi on liian pitkä, max. 30 merkkiä");
+        return false;
+    }
+    if (form.lastname.value.length > 30) {
+        alert("Sukunimi on liian pitkä, max. 30 merkkiä");
+        return false;
+    }
+    if (form.username.value.length > 30) {
+        alert("Käyttäjätunnus on liian pitkä, max. 30 merkkiä");
+        return false;
+    }
+    if (form.password.value.length > 30) {
+        alert("Salasana on liian pitkä, max. 30 merkkiä");
+        return false;
+    }
+    if (form.firstname.value == "") {
+        alert("Etunimi puuttuu");
+        return false;
+    }
+    if (form.lastname.value == "") {
+        alert("Sukunimi puuttuu");
+        return false;
+    }
+    if (form.status.value == "") {
+        alert("Valitse, oletko opettaja vai oppilas");
+        return false;
+    }
+    if (form.username.value == "") {
+        alert("Käyttäjätunnus puuttuu");
+        return false;
+    }
+    if (form.password.value == "") {
+        alert("Salasana puuttuu");
+        return false;
+    }
+    return true;
+}
+</script>

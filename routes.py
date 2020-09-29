@@ -20,6 +20,10 @@ def register():
         lastname=request.form["lastname"]
         username=request.form["username"] 
         password=request.form["password"]
+        if len(firstname) > 30 or len(lastname) > 30 or len(username) > 30 or len(password) > 30:
+            return render_template("error.html", message="Jokin rekisteröinnin syötteistä on liian pitkä. Maksimi on 30 merkkiä.")
+        if firstname == "" or lastname == "" or status == "" or username == "" or password == "":
+            return render_template("error.html", message="Kenttää ei voi jättää tyhjäksi.")
         if users.register(firstname,lastname,username,password,status):
             return redirect("/welcome")
         else:
