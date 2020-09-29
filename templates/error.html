@@ -1,3 +1,14 @@
 {{message}}
 <p>
-<a href="/">Palaa takaisin etusivulle</a>
+{% if session.user_id %}
+<p>
+<a href="/welcome">Takaisin omalle etusivulle</a>
+<p>
+tai
+<p>
+<a href="/logout">Kirjaudu ulos</a>
+
+{% else %}
+<a href="/">Palaa kirjautumissivulle</a>
+{% endif %}
+

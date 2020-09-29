@@ -50,7 +50,7 @@ def welcome():
 
 @app.route("/logout")
 def logout():
-    users.logout
+    users.logout()
     return redirect("/")
 
 @app.route("/new", methods=["GET", "POST"])
