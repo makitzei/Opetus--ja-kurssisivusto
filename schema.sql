@@ -10,6 +10,7 @@ CREATE TABLE users (
 CREATE TABLE courses (
     id SERIAL PRIMARY KEY,
     title TEXT,
+    description TEXT,
     level INTEGER,
     content TEXT,
     keyword TEXT,

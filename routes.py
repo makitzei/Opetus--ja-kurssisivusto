@@ -8,7 +8,8 @@ from db import db
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    courselist = courses.get_courses()
+    return render_template("index.html", courses = courselist)
 
 @app.route("/register", methods=["GET","POST"])
 def register():
@@ -63,15 +64,16 @@ def new():
         return render_template("new.html")
     if request.method == "POST":
         title = request.form["title"]
+        description = request.form["description"]
         level = request.form["level"]
         content = request.form["content"]
         keyword = request.form["keyword"]
         teacher_id = users.user_id()
-        if len(title) > 100 or len(content) > 10000 or len(keyword) > 30:
-            return render_template("error.html", message="Jokin syötteistä on liian pitkä. Otsikko max. 100, kurssiteksti max. 10 000 ja avainsana max. 30 merkkiä.")
-        if title == "" or content == "" or keyword == "":
+        if len(title) > 100 or len(content) > 10000 or len(keyword) > 30 or len(description) > 250:
+            return render_template("error.html", message="Jokin syötteistä on liian pitkä. Otsikko max. 100, kuvaus max. 250, kurssiteksti max. 10 000 ja avainsana max. 30 merkkiä.")
+        if title == "" or content == "" or keyword == "" or description == "":
             return render_template("error.html", message="Kenttää ei voi jättää tyhjäksi.")
-        if courses.new_course(title,level,content,keyword,teacher_id):
+        if courses.new_course(title,description,level,content,keyword,teacher_id):
             return redirect("/welcome")
         else:
             return render_template("error.html", message="Kurssin luominen ei onnistunut")
@@ -80,10 +82,11 @@ def new():
 def course(id):
     course = courses.get_course_with_id(id)
     title = course[1]
-    level = course[2]
-    content = course[3]
-    keyword = course[4]
-    return render_template("course.html", title=title, level=level, content=content, keyword=keyword, id=id)
+    description = course[2]
+    level = course[3]
+    content = course[4]
+    keyword = course[5]
+    return render_template("course.html", title=title, description = description, level=level, content=content, keyword=keyword, id=id)
 
 @app.route("/courses/<int:id>/newquestion", methods=["GET", "POST"])
 def newquestion(id):

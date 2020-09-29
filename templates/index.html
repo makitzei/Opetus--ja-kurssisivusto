@@ -22,3 +22,13 @@
     <br>
     <p>
 {% endif %}
+
+Saatavilla olevia kursseja:
+<ul>
+    {% for course in courses %}
+    <li>{{ course[1] }} </li>
+    {% endfor %}
+    </ul>
+</ul>
+<p>
+Kirjaudu sisään nähdäksesi lisää!

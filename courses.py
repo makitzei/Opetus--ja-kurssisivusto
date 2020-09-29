@@ -1,14 +1,20 @@
 from db import db
 from flask import session
 
-def new_course(title, level, content, keyword, teacher_id):
+def new_course(title, description, level, content, keyword, teacher_id):
     try:
-        sql = "INSERT INTO courses (title, level, content, keyword, teacher_id) VALUES (:title, :level, :content, :keyword, :teacher_id)"
-        db.session.execute(sql, {"title":title,"level":level,"content":content,"keyword":keyword,"teacher_id":teacher_id})
+        sql = "INSERT INTO courses (title, description, level, content, keyword, teacher_id) VALUES (:title, :description, :level, :content, :keyword, :teacher_id)"
+        db.session.execute(sql, {"title":title, "description":description, "level":level,"content":content,"keyword":keyword,"teacher_id":teacher_id})
         db.session.commit()
         return True
     except:
         return False
+
+def get_courses():
+    sql = "SELECT * FROM courses"
+    result = db.session.execute(sql)
+    courses = result.fetchall()
+    return courses
 
 def get_course_with_teacher(id):
     sql = "SELECT id, title FROM courses WHERE teacher_id =:teacher_id"
