@@ -1,7 +1,7 @@
 <h1>Uuden kurssin luominen</h1>
 
 <br>
-<form action="/new" method="POST">
+<form action="/new" method="POST" onsubmit="return check(this)">
 Kurssin nimi:
 <p>
 <input type="text" name="title">
@@ -11,7 +11,7 @@ Teksti:
 <textarea name="content" rows="20" cols="60"></textarea>
 <p>
 Vaativuustaso:
-<input type="radio" name="level" value="1"> helppo
+<input type="radio" name="level" value="1" checked required/> helppo
 <input type="radio" name="level" value="2"> keskivaikea
 <input type="radio" name="level" value="3"> vaikea
 <p>
@@ -21,4 +21,35 @@ Avainsana:
 <p></p>
 <input type="submit" value="Luo kurssi">
 </form>
+
+<script>
+    function check(form) {
+        if (form.title.value.length > 100) {
+            alert("Otsikko on liian pitkä, max. 100 merkkiä");
+            return false;
+        }
+        if (form.content.value.length > 10000) {
+            alert("Kurssin teksti on liian pitkä, max. 10 000 merkkiä");
+            return false;
+        }
+        if (form.keyword.value.length > 30) {
+            alert("Avainsana on liian pitkä, max. 30 merkkiä");
+            return false;
+        }
+        if (form.title.value == "") {
+            alert("Otsikko puuttuu");
+            return false;
+        }
+        if (form.content.value == "") {
+            alert("Kurssiteksti puuttuu");
+            return false;
+        }
+        if (form.keyword.value == "") {
+            alert("Avainsana puuttuu");
+            return false;
+        }
+        return true;
+    }
+    </script>
+
 

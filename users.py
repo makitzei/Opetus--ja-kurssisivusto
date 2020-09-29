@@ -67,7 +67,3 @@ def is_student(id):
     if status[0] == "oppilas":
         allow = True
     return allow
-
-
-
-

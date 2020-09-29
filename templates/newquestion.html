@@ -1,28 +1,42 @@
 <h1>Uusi kysymys kurssille "{{ course_title }}" </h1>
 
 <br>
-<form action="/courses/{{ id }}/newquestion" method="POST">
+<form action="/courses/{{ id }}/newquestion" method="POST" onsubmit="return check(this)">
 <p>Kysymys:<br>
 <textarea name="question" rows="5" cols="60"></textarea></p>
 <p>Vaihtoehto 1:<br>
 <input type="text" name="choice" size="50"></p>
 <input type="radio" name="truefalse1" value="TRUE"> oikein
-<input type="radio" name="truefalse1" value="FALSE"> väärin
+<input type="radio" name="truefalse1" value="FALSE" checked required/> väärin
 <p>Vaihtoehto 2:<br>
 <input type="text" name="choice" size="50"></p>
 <input type="radio" name="truefalse2" value="TRUE"> oikein
-<input type="radio" name="truefalse2" value="FALSE"> väärin
+<input type="radio" name="truefalse2" value="FALSE" checked required/> väärin
 <p>Vaihtoehto 3:<br>
 <input type="text" name="choice" size="50"></p>
 <input type="radio" name="truefalse3" value="TRUE"> oikein
-<input type="radio" name="truefalse3" value="FALSE"> väärin
+<input type="radio" name="truefalse3" value="FALSE" checked required/> väärin
 <p>Vaihtoehto 4:<br>
 <input type="text" name="choice" size="50"></p>
 <input type="radio" name="truefalse4" value="TRUE"> oikein
-<input type="radio" name="truefalse4" value="FALSE"> väärin
+<input type="radio" name="truefalse4" value="FALSE" checked required/> väärin
 <p>
 <input type="submit" value="Luo kysymys">
 <input type="hidden" name="id" value="{{ id }}">
 </form>
 <p>
 <a href="/welcome">Takaisin omalle etusivulle</a>
+
+<script>
+    function check(form) {
+    if (form.question.value.length > 500) {
+        alert("Kysymys on liian pitkä, max. 500 merkkiä");
+        return false;
+    }
+    if (form.question.value == "") {
+        alert("Kysymys puuttuu");
+        return false;
+    }
+    return true;
+    }
+</script>
