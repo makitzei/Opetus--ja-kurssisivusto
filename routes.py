@@ -2,6 +2,7 @@ from app import app
 import users
 import courses
 import questions
+import students
 from flask import render_template, request, session, redirect
 from werkzeug.security import check_password_hash, generate_password_hash
 from db import db
@@ -52,8 +53,9 @@ def welcome():
         course = courses.get_course_with_teacher(id)
         return render_template("welcome_teacher.html", name = nimi, courses = course)
     elif users.is_student(id):
+        mycourselist = students.get_courses(id)
         courselist = courses.get_courses()
-        return render_template("welcome_student.html", name = nimi, courses = courselist)
+        return render_template("welcome_student.html", name = nimi, courses = courselist, mycourses = mycourselist)
     else:
         return render_template("error.html", message="Jokin meni vikaan")
 
@@ -117,3 +119,13 @@ def newquestion(id):
             return render_template("error.html", message="Kysymyksen luominen ei onnistunut")
 
 # Muistilappu: Ei osaa vielä tarkistaa, että ainakin yksi vastausvaihtoehto on annettu.
+
+@app.route("/join", methods=["POST"])
+def join():
+    course_id = request.form["course_id"]
+    if students.join(users.user_id(),course_id):
+        return redirect("/welcome")
+    else:
+        return render_template("error.html", message="Kurssille liittyminen ei onnistunut")
+
+    

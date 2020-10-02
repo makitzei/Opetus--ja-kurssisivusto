@@ -17,13 +17,12 @@ Kurssit:
 </ul>
 <p>
 Käyttäjät:
-<ul>
+    <ul>
     {% for user in users %}
-    <li><p>{{ user[1] }} {{ user[2] }}, {{ user[5] }}</p></li>
+        <li>{{ user[1] }} {{ user[2] }}, {{ user[5] }}</li>
     {% endfor %}
     </ul>
 </ul>
-<p>
 
 <br>
 <img src="static/iiris.png" width="250">

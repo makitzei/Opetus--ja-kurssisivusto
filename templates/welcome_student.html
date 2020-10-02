@@ -3,10 +3,19 @@
 <h1>Moikka oppilas {{ name }}!</h1>
 
 <br>
-Toiminnot:
+Omat kurssini:
 <ul>
-    <li>Hae kursseja</li>
-    <li>Omat kurssini</li>
+    {% for course in mycourses %}
+    <li>{{ course[1] }} <a href="/courses/{{ course[0] }}">Kurssisivulle</a>
+    <!--     
+    <br>
+    <form action="/join" method="POST">
+        <input type="hidden" name="course_id" value="{{ course[0] }}">
+        <input type="submit" value="Poistu kurssilta">
+    </form>
+    -->
+    </li>
+    {% endfor %}
 </ul>
 
 Saatavilla olevia kursseja: 
@@ -16,10 +25,14 @@ Saatavilla olevia kursseja:
     <li>{{ course[1] }} <a href="/courses/{{ course[0] }}">Kurssisivulle</a> 
     <br>
     <i>{{ course[2] }}</i>
+    <br>
+    <form action="/join" method="POST">
+        <input type="hidden" name="course_id" value="{{ course[0] }}">
+        <input type="submit" value="Liity kurssille">
+    </form>
     <p>
     </li>
     {% endfor %}
-    </ul>
 </ul>
 <p>
 
