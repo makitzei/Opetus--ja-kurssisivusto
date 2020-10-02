@@ -15,3 +15,13 @@ def get_courses(student_id):
     result = db.session.execute(sql,{"student_id":student_id})
     mycourses = result.fetchall()
     return mycourses
+
+def leave_course(student_id, course_id):
+    try:
+        sql = "DELETE FROM student_course WHERE student_id = :student_id AND course_id = :course_id"
+        db.session.execute(sql,{"student_id":student_id,"course_id":course_id})
+        db.session.commit()
+        return True
+    except:
+        return False
+

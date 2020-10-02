@@ -6,14 +6,13 @@
 Omat kurssini:
 <ul>
     {% for course in mycourses %}
-    <li>{{ course[1] }} <a href="/courses/{{ course[0] }}">Kurssisivulle</a>
-    <!--     
+    <li>{{ course[1] }} <a href="/courses/{{ course[0] }}">Kurssisivulle</a>    
     <br>
-    <form action="/join" method="POST">
+    <form action="/leave" method="POST">
         <input type="hidden" name="course_id" value="{{ course[0] }}">
         <input type="submit" value="Poistu kurssilta">
     </form>
-    -->
+    <p>
     </li>
     {% endfor %}
 </ul>
@@ -22,7 +21,7 @@ Saatavilla olevia kursseja:
 
 <ul>
     {% for course in courses %}
-    <li>{{ course[1] }} <a href="/courses/{{ course[0] }}">Kurssisivulle</a> 
+    <li>{{ course[1] }} 
     <br>
     <i>{{ course[2] }}</i>
     <br>

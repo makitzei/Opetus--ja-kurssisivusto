@@ -128,4 +128,12 @@ def join():
     else:
         return render_template("error.html", message="Kurssille liittyminen ei onnistunut")
 
+@app.route("/leave", methods=["POST"])
+def leave():
+    course_id = request.form["course_id"]
+    if students.leave_course(users.user_id(),course_id):
+        return redirect("/welcome")
+    else:
+        return render_template("error.html", message="Kurssilta poistuminen ei onnistunut")
+
     
