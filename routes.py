@@ -3,6 +3,7 @@ import users
 import courses
 import questions
 import students
+import admin
 from flask import render_template, request, session, redirect
 from werkzeug.security import check_password_hash, generate_password_hash
 from db import db
@@ -135,5 +136,13 @@ def leave():
         return redirect("/welcome")
     else:
         return render_template("error.html", message="Kurssilta poistuminen ei onnistunut")
+
+@app.route("/deletecourse", methods=["POST"])
+def deletecourse():
+    course_id = request.form["course_id"]
+    if admin.delete_course(course_id):
+        return redirect("/welcome")
+    else:
+        return render_template("error.html", message="Kurssin poistaminen ei onnistunut")
 
     

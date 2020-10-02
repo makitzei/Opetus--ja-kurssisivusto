@@ -14,31 +14,31 @@ CREATE TABLE courses (
     level INTEGER,
     content TEXT,
     keyword TEXT,
-    teacher_id INTEGER REFERENCES users
+    teacher_id INTEGER REFERENCES users ON DELETE CASCADE 
 );
 
 CREATE TABLE questions (
     id SERIAL PRIMARY KEY,
     question TEXT,
-    course_id INTEGER REFERENCES courses 
+    course_id INTEGER REFERENCES courses ON DELETE CASCADE 
 );
 
 CREATE TABLE choices (
     id SERIAL PRIMARY KEY,
     choice TEXT,
     correct BOOLEAN,
-    question_id INTEGER REFERENCES questions
+    question_id INTEGER REFERENCES questions ON DELETE CASCADE 
 );
 
 CREATE TABLE answers (
     id SERIAL PRIMARY KEY,
-    choice_id INTEGER REFERENCES choices
+    choice_id INTEGER REFERENCES choices ON DELETE CASCADE 
 );
 
 CREATE TABLE student_course (
     id SERIAL PRIMARY KEY,
-    student_id INTEGER REFERENCES users,
-    course_id INTEGER REFERENCES courses
+    student_id INTEGER REFERENCES users ON DELETE CASCADE ,
+    course_id INTEGER REFERENCES courses ON DELETE CASCADE 
 );
 
 INSERT INTO users (firstname,lastname,username,password,status) VALUES ('Testi','Käyttäjä','admin','pass','admin');
