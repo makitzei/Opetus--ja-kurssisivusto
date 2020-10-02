@@ -9,6 +9,16 @@ Toiminnot:
     <li>Omat kurssini</li>
 </ul>
 
+Saatavilla olevia kursseja: 
+
+<ul>
+    {% for course in courses %}
+    <li>{{ course[1] }} <a href="/courses/{{ course[0] }}">Kurssisivulle</a> </li>
+    {% endfor %}
+    </ul>
+</ul>
+<p>
+
 <br>
 <img src="static/iiris.png" width="250">
 <br>

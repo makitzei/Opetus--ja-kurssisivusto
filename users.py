@@ -67,3 +67,9 @@ def is_student(id):
     if status[0] == "oppilas":
         allow = True
     return allow
+
+def get_users():
+    sql = "SELECT * FROM users"
+    result = db.session.execute(sql)
+    users = result.fetchall()
+    return users

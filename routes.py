@@ -43,13 +43,17 @@ def login():
 def welcome():
     id = users.user_id()
     nimi = users.user_firstname(users.user_all(id))
-    if users.is_admin(id):   
-        return render_template("welcome_admin.html", name = nimi)
+    if users.is_admin(id):
+        courselist = courses.get_courses()
+        userlist = users.get_users()
+        userlist.sort(key=lambda x: x[5])
+        return render_template("welcome_admin.html", name = nimi, courses = courselist, users = userlist)
     elif users.is_teacher(id):
         course = courses.get_course_with_teacher(id)
         return render_template("welcome_teacher.html", name = nimi, courses = course)
     elif users.is_student(id):
-        return render_template("welcome_student.html", name = nimi)
+        courselist = courses.get_courses()
+        return render_template("welcome_student.html", name = nimi, courses = courselist)
     else:
         return render_template("error.html", message="Jokin meni vikaan")
 
@@ -86,7 +90,9 @@ def course(id):
     level = course[3]
     content = course[4]
     keyword = course[5]
-    return render_template("course.html", title=title, description = description, level=level, content=content, keyword=keyword, id=id)
+    #get question and choices
+    questionlist = questions.get_questions_with_course_id(id)
+    return render_template("course.html", title=title, description = description, level=level, content=content, keyword=keyword, id=id, questions=questionlist)
 
 @app.route("/courses/<int:id>/newquestion", methods=["GET", "POST"])
 def newquestion(id):

@@ -2,19 +2,21 @@
 
 <h1> {{ title }} </h1>
 <p>
-<i>{{ level }} (1 = helppo, 2 = keskitaso, 3 = vaikea)</i>
+<i>Vaikeusaste: {{ level }} (1 = helppo, 2 = keskitaso, 3 = vaikea)</i>
 <p>
 <i>Aihealue: {{ keyword }}</i>
 <p>
-{{ description }}
+<i>Kuvaus: {{ description }}</i>
 <p>
 {{ content }}
 <p>
 <hr>
+<ol>
 {% for question in questions %}
-Kysymys: {{ questions[1] }}
-</hr>
+    <li>kysymys: {{ question[1] }} </li>
 {% endfor %}
+</ol>
+<hr>
 <a href="/courses/{{ id }}/newquestion">Luo uusi kysymys</a>
 <p>
 <a href="/welcome">Takaisin</a>
