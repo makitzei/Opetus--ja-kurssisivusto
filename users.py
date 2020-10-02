@@ -20,7 +20,8 @@ def login(username,password):
         return False
     else:
         hash_value = user[0]
-    if check_password_hash(user[0],password):
+    #lisätty oikopolku admin-käyttäjälle, jonka salasana ei tule kryptattuna tietokantaan
+    if check_password_hash(user[0],password) or (user[0]=="pass"):
         session["user_id"] = user[1]
         return True
     else:

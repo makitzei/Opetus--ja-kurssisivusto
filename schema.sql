@@ -41,4 +41,5 @@ CREATE TABLE student_course (
     course_id INTEGER REFERENCES courses
 );
 
+INSERT INTO users (firstname,lastname,username,password,status) VALUES ('Testi','Käyttäjä','admin','pass','admin');
 
