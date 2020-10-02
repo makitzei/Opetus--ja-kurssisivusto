@@ -13,7 +13,11 @@ Saatavilla olevia kursseja:
 
 <ul>
     {% for course in courses %}
-    <li>{{ course[1] }} <a href="/courses/{{ course[0] }}">Kurssisivulle</a> </li>
+    <li>{{ course[1] }} <a href="/courses/{{ course[0] }}">Kurssisivulle</a> 
+    <br>
+    <i>{{ course[2] }}</i>
+    <p>
+    </li>
     {% endfor %}
     </ul>
 </ul>
