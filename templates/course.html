@@ -22,6 +22,8 @@
 {% endfor %}
 </ol>
 <hr>
+{% if status == True %}
 <a href="/courses/{{ id }}/newquestion">Luo uusi kysymys</a>
+{% endif %}
 <p>
 <a href="/welcome">Takaisin</a>

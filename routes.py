@@ -93,16 +93,25 @@ def course(id):
     level = course[3]
     content = course[4]
     keyword = course[5]
+    #check rights
+    status = False
+    if users.is_teacher(users.user_id()) or users.is_admin(users.user_id()):
+        status = True
     #get question and choices
     questionlist = questions.get_questions_with_course_id(id)
-    return render_template("course.html", title=title, description = description, level=level, content=content, keyword=keyword, id=id, questions=questionlist)
+    return render_template("course.html", title=title, description = description, level=level, content=content, keyword=keyword, id=id, questions=questionlist, status=status)
 
 @app.route("/courses/<int:id>/newquestion", methods=["GET", "POST"])
 def newquestion(id):
     if request.method == "GET":
-        course = courses.get_course_with_id(id)
-        title = course[1]
-        return render_template("newquestion.html", course_title = title, id = id)
+        #check rights
+        if users.is_teacher(users.user_id()) or users.is_admin(users.user_id()):
+            course = courses.get_course_with_id(id)
+            title = course[1]
+            return render_template("newquestion.html", course_title = title, id = id)
+        else:
+            return render_template("error.html", message="Sinulla ei ole oikeutta nähdä tätä sivua")
+
     if request.method == "POST":
         question = request.form["question"]
         course_id = id

@@ -8,6 +8,8 @@
     tai
     <p>
     <a href="/logout">Kirjaudu ulos</a>
+    <br>
+    <p>
 {% else %}
     <p>Kirjaudu sisään tai <a href="/register">rekisteröidy käyttäjäksi</a></p>
 
@@ -22,7 +24,7 @@
     <br>
     <p>
 {% endif %}
-
+<br>
 Saatavilla olevia kursseja:
 <ul>
     {% for course in courses %}
