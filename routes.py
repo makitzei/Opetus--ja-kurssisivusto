@@ -52,11 +52,11 @@ def welcome():
         return render_template("welcome_admin.html", name = nimi, courses = courselist, users = userlist)
     elif users.is_teacher(id):
         course = courses.get_course_with_teacher(id)
-        return render_template("welcome_teacher.html", name = nimi, courses = course)
+        return render_template("welcome_teacher.html", id = id, name = nimi, courses = course)
     elif users.is_student(id):
         mycourselist = students.get_courses(id)
         courselist = courses.get_courses()
-        return render_template("welcome_student.html", name = nimi, courses = courselist, mycourses = mycourselist)
+        return render_template("welcome_student.html", id = id, name = nimi, courses = courselist, mycourses = mycourselist)
     else:
         return render_template("error.html", message="Jokin meni vikaan")
 
@@ -153,5 +153,28 @@ def deletecourse():
         return redirect("/welcome")
     else:
         return render_template("error.html", message="Kurssin poistaminen ei onnistunut")
+
+@app.route("/deleteuser", methods=["POST"])
+def deleteuser():
+    user_id = request.form["user_id"]
+    if admin.delete_user(user_id):
+        return redirect("/welcome")
+    else:
+        return render_template("error.html", message="Käyttäjän poistaminen ei onnistunut")
+
+@app.route("/showuser/<int:id>", methods=["GET"])
+def showuser(id):
+    allow = False
+    if (users.is_admin(users.user_id())):
+        allow = True
+    if (users.user_id() == id) or allow:
+        user = users.user_all(id)
+        firstname = user[1]
+        lastname = user[2]
+        username = user[3]
+        status = user[5]
+        return render_template("showuser.html", id=id, firstname=firstname, lastname=lastname, username=username, status=status, allow=allow)
+    else:
+        return render_template("error.html", message="Sinulla ei ole oikeutta nähdä tätä sivua")
 
     

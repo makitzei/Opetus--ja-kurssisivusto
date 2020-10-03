@@ -1,0 +1,19 @@
+<h2>Käyttäjän tiedot</h2>
+<p>
+Etunimi: {{ firstname }}
+<br>
+Sukunimi: {{ lastname }}
+<br>
+Käyttäjätunnus: {{ username }}
+<br>
+Status: {{ status }}
+<br>
+<br>
+{% if allow == True and (not id == 1) %}
+<form action="/deleteuser" method="POST">
+    <input type="hidden" name="user_id" value="{{ id }}">
+    <input type="submit" value="Poista käyttäjä">
+</form>
+{% endif %}
+<br>
+<a href="/welcome">Takaisin omalle etusivulle</a>

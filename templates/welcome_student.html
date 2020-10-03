@@ -1,8 +1,9 @@
 <title>Opetussovellus</title>
 
 <h1>Moikka oppilas {{ name }}!</h1>
-
-<br>
+<p>
+<a href="/showuser/{{ id }}">Omat tiedot</a>
+<p>
 Omat kurssini:
 <ul>
     {% for course in mycourses %}
