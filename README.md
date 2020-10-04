@@ -1,4 +1,4 @@
-H1 Opetussovellus
+# Opetussovellus
 
 Helsingin yliopiston Tietokantasovellus-kurssin harjoitustyö syksyllä 2020. Kurssi- ja opetussivusto, johon rekisteröidytään joko opettajaksi tai oppilaaksi. Yhdet ylläpitäjätunnukset syntyvät valmiiksi tietokantaa luotaessa.
 
