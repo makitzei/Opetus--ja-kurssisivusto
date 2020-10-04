@@ -1,6 +1,12 @@
 {% extends "layout.html" %}
 {% block title %}Etusivu{% endblock %}
 {% block content %}
+    <nav>
+      <ul>
+        <li><a href="/logout">Kirjaudu ulos</a></li>
+      </ul>
+    </nav>
+    <img src="static/admin.png" width="250">
     <h2>Moikka ylläpitäjä {{ name }}!</h2>
     <br>
     Kurssit:
@@ -23,8 +29,5 @@
                 <br></li>
         {% endfor %}
     </ul>
-    <br>
-    <img src="static/admin.png" width="250">
-    <br>
-    <a href="/logout">Kirjaudu ulos</a>
+    
 {% endblock %}

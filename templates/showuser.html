@@ -1,6 +1,12 @@
 {% extends "layout.html" %}
 {% block title %}Käyttäjän tiedot{% endblock %}
 {% block content %}
+<nav>
+    <ul>
+      <li><a href="/welcome">Etusivu</a></li>
+      <li><a href="/logout">Kirjaudu ulos</a></li>
+    </ul>
+</nav>
 
 <h2>Käyttäjän tiedot</h2>
 <p>
@@ -19,7 +25,5 @@ Status: {{ status }}
     <input type="submit" value="Poista käyttäjä">
 </form>
 {% endif %}
-<br>
-<a href="/welcome">Takaisin omalle etusivulle</a>
 
 {% endblock %}

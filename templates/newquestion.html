@@ -1,6 +1,12 @@
 {% extends "layout.html" %}
 {% block title %}Luo kysymys{% endblock %}
 {% block content %}
+<nav>
+    <ul>
+      <li><a href="/welcome">Etusivu</a></li>
+      <li><a href="/logout">Kirjaudu ulos</a></li>
+    </ul>
+</nav>
 
 <h2>Uusi kysymys kurssille "{{ course_title }}" </h2>
 
@@ -28,8 +34,7 @@
 <input type="submit" value="Luo kysymys">
 <input type="hidden" name="id" value="{{ id }}">
 </form>
-<p>
-<a href="/welcome">Takaisin omalle etusivulle</a>
+
 
 <script>
     function check(form) {

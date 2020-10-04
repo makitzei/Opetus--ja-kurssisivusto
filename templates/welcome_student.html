@@ -1,9 +1,14 @@
 {% extends "layout.html" %}
 {% block title %}Etusivu{% endblock %}
 {% block content %}
+    <nav>
+      <ul>
+        <li><a href="/showuser/{{ id }}">Omat tiedot</a></li>
+        <li><a href="/logout">Kirjaudu ulos</a></li>
+      </ul>
+    </nav>
+    <img src="static/oppilas.png" width="250">
     <h2>Moikka oppilas {{ name }}!</h2>
-    <p>
-    <a href="/showuser/{{ id }}">Omat tiedot</a>
     <p>
     Omat kurssini:
     <ul>
@@ -35,10 +40,7 @@
         </li>
         {% endfor %}
     </ul>
-    <p>
 
-    <br>
-    <img src="static/oppilas.png" width="250">
-    <br>
-    <a href="/logout">Kirjaudu ulos</a>
+    
+
 {% endblock %}
