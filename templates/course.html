@@ -1,6 +1,8 @@
-{{ message }}
+{% extends "layout.html" %}
+{% block title %}Kurssisivu{% endblock %}
+{% block content %}
 
-<h1> {{ title }} </h1>
+<h2> {{ title }} </h2>
 <p>
 <i>Vaikeusaste: {{ level }} (1 = helppo, 2 = keskitaso, 3 = vaikea)</i>
 <p>
@@ -27,3 +29,5 @@
 {% endif %}
 <p>
 <a href="/welcome">Takaisin</a>
+
+{% endblock %}

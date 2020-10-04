@@ -1,5 +1,7 @@
-<title>Opetussovellus</title>
-<h1>Etusivu</h1>
+{% extends "layout.html" %}
+{% block title %}Rekisteröidy{% endblock %}
+{% block content %}
+
 <b>Tervetuloa</b> <i>opetussovellukseen</i>!
 <p><a href="/">Kirjaudu sisään</a> tai rekisteröidy käyttäjäksi</p>
 
@@ -63,3 +65,5 @@ function check(form) {
     return true;
 }
 </script>
+
+{% endblock %}

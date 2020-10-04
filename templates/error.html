@@ -1,3 +1,7 @@
+{% extends "layout.html" %}
+{% block title %}Virhe{% endblock %}
+{% block content %}
+
 {{message}}
 <p>
 {% if session.user_id %}
@@ -12,4 +16,6 @@ tai
 <a href="/">Palaa kirjautumissivulle</a>
 {% endif %}
 <p>
+
+{% endblock %}
 

@@ -1,4 +1,8 @@
-<h1>Uuden kurssin luominen</h1>
+{% extends "layout.html" %}
+{% block title %}Luo kurssi{% endblock %}
+{% block content %}
+
+<h2>Uuden kurssin luominen</h2>
 
 <br>
 <form action="/new" method="POST" onsubmit="return check(this)">
@@ -56,4 +60,5 @@ Avainsana:
     }
     </script>
 
+{% endblock %}
 

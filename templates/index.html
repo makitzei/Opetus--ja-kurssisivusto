@@ -1,36 +1,38 @@
-<title>Opetussovellus</title>
-<h1>Etusivu</h1>
-<b>Tervetuloa</b> <i>opetussovellukseen</i>!
-{% if session.user_id %}
-    <p>
-    <a href="/welcome">Takaisin omalle etusivulle</a>
-    <p>
-    tai
-    <p>
-    <a href="/logout">Kirjaudu ulos</a>
-    <br>
-    <p>
-{% else %}
-    <p>Kirjaudu sisään tai <a href="/register">rekisteröidy käyttäjäksi</a></p>
+{% extends "layout.html" %}
+{% block title %}Kirjaudu{% endblock %}
+{% block content %}
+    <b>Tervetuloa</b> <i>opetussovellukseen</i>!
+    {% if session.user_id %}
+        <p>
+        <a href="/welcome">Takaisin omalle etusivulle</a>
+        <p>
+        tai
+        <p>
+        <a href="/logout">Kirjaudu ulos</a>
+        <br>
+        <p>
+    {% else %}
+        <p>Kirjaudu sisään tai <a href="/register">rekisteröidy käyttäjäksi</a></p>
 
+        <br>
+        <form action="/login" method="POST">
+        <p>Tunnus:<br>
+        <input type="text" name="username"></p>
+        <p>Salasana:<br>
+        <input type="password" name="password"></p>
+        <input type="submit" value="Kirjaudu">
+        </form>
+        <br>
+        <p>
+    {% endif %}
     <br>
-    <form action="/login" method="POST">
-    <p>Tunnus:<br>
-    <input type="text" name="username"></p>
-    <p>Salasana:<br>
-    <input type="password" name="password"></p>
-    <input type="submit" value="Kirjaudu">
-    </form>
-    <br>
-    <p>
-{% endif %}
-<br>
-Saatavilla olevia kursseja:
-<ul>
-    {% for course in courses %}
-    <li>{{ course[1] }} </li>
-    {% endfor %}
+    Saatavilla olevia kursseja:
+    <ul>
+        {% for course in courses %}
+        <li>{{ course[1] }} </li>
+        {% endfor %}
+        </ul>
     </ul>
-</ul>
-<p>
-Kirjaudu sisään nähdäksesi lisää!
+    <p>
+    Kirjaudu sisään nähdäksesi lisää!
+{% endblock %}

@@ -1,6 +1,8 @@
-<title>Opetussovellus</title>
+{% extends "layout.html" %}
+{% block title %}Etusivu{% endblock %}
+{% block content %}
 
-<h1>Moikka opettaja {{ name }}!</h1>
+<h2>Moikka opettaja {{ name }}!</h2>
 <p>
 <a href="/showuser/{{ id }}">Omat tiedot</a>
 <p>
@@ -20,3 +22,4 @@ Omat kurssini:
 <img src="static/opettaja.png" width="250">
 <br>
 <a href="/logout">Kirjaudu ulos</a>
+{% endblock %}

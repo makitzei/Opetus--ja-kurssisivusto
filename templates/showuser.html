@@ -1,3 +1,7 @@
+{% extends "layout.html" %}
+{% block title %}Käyttäjän tiedot{% endblock %}
+{% block content %}
+
 <h2>Käyttäjän tiedot</h2>
 <p>
 Etunimi: {{ firstname }}
@@ -17,3 +21,5 @@ Status: {{ status }}
 {% endif %}
 <br>
 <a href="/welcome">Takaisin omalle etusivulle</a>
+
+{% endblock %}
