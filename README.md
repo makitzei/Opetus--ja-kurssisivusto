@@ -11,7 +11,7 @@ Sovelluksen toimivat toiminnallisuudet:
 * Ylläpitäjä näkee kaikkien käyttäjien ja kurssien tiedot ja voi poistaa käyttäjiä ja kursseja.
 
 Vielä tekemättä:
-* Ulkoasuun ei ole vielä panostettu
+* Ulkoasuun on panostettu hieman, mutta vielä on tehtävää
 * Kaikki kursseihin liittyvät hakutoiminnot on toteuttamatta: kurssien hakeminen nimellä tai avainsanalla.
 * Kysymysten vastausvaihtoehdot eivät ole näkyvissä eikä niihin pysty vastaamaan
 * Oppilaiden edistymistä ei voi seurata vielä mistään.
