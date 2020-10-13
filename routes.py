@@ -134,6 +134,25 @@ def newquestion(id):
 
 # Muistilappu: Ei osaa vielä tarkistaa, että ainakin yksi vastausvaihtoehto on annettu.
 
+@app.route("/courses/<int:id>/question/<int:question_id>", methods=["GET", "POST"])
+def question(id,question_id):
+
+    if request.method == "GET":
+        question = questions.get_question(question_id)
+        choicesList = questions.get_choices(question_id)
+        return render_template("question.html", choices = choicesList, \
+            question_id=question_id, question = question[0], id = id)
+
+    if request.method == "POST":
+        course_id = id
+        student_id = users.user_id()
+        choice_id = request.form["answer"]
+        if questions.new_answer(course_id,student_id,choice_id):
+            return redirect("/courses/"+str(id))
+        else:
+            return render_template("error.html", message="Jokin epäonnistui vastaamisessa")
+
+
 @app.route("/join", methods=["POST"])
 def join():
     course_id = request.form["course_id"]
@@ -180,14 +199,3 @@ def showuser(id):
         return render_template("showuser.html", id=id, firstname=firstname, lastname=lastname, username=username, status=status, allow=allow)
     else:
         return render_template("error.html", message="Sinulla ei ole oikeutta nähdä tätä sivua")
-
-@app.route("/question/<int:question_id>", methods=["GET", "POST"])
-def question(question_id):
-    if request.method == "GET":
-        question = questions.get_question(question_id)
-        choicesList = questions.get_choices(question_id)
-        return render_template("question.html", choices = choicesList, \
-            question_id=question_id, question = question[0])
-
-    if request.method == "POST":
-        return redirect("/welcome")

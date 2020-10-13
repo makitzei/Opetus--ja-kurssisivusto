@@ -9,7 +9,7 @@
     </ul>
 </nav>
 <h2>{{ question }}</h2>
-<form action="/question/{{ question_id }}" method="POST">
+<form action="/courses/{{ id }}/question/{{ question_id }}" method="POST">
 {% for choice in choices %}
 <p>
 <input type="checkbox" name="answer" value="{{ choice[0] }}"> {{ choice[1] }}

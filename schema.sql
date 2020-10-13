@@ -32,7 +32,10 @@ CREATE TABLE choices (
 
 CREATE TABLE answers (
     id SERIAL PRIMARY KEY,
-    choice_id INTEGER REFERENCES choices ON DELETE CASCADE 
+    course_id INTEGER REFERENCES courses ON DELETE CASCADE, 
+    student_id INTEGER REFERENCES users ON DELETE CASCADE,
+    choice_id INTEGER REFERENCES choices ON DELETE CASCADE,
+    sent_at TIMESTAMP 
 );
 
 CREATE TABLE student_course (

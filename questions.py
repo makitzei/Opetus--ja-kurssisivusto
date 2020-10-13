@@ -3,7 +3,8 @@ from flask import session, request
 
 def new_question(question, course_id, choices):
     try:
-        sql = "INSERT INTO questions (question, course_id) VALUES (:question, :course_id) RETURNING id"
+        sql = "INSERT INTO questions (question, course_id) "\
+            "VALUES (:question, :course_id) RETURNING id"
         result = db.session.execute(sql, {"question":question,"course_id":course_id})
         question_id = result.fetchone()[0]
         choices = request.form.getlist("choice")
@@ -13,8 +14,10 @@ def new_question(question, course_id, choices):
             if choice != "":
                 truefalse = "truefalse" + str(laskuri)
                 correct = request.form[truefalse]
-                sql = "INSERT INTO choices (choice, correct, question_id) VALUES (:choice, :correct, :question_id)"
-                db.session.execute(sql, {"choice":choice, "correct":correct, "question_id":question_id})
+                sql = "INSERT INTO choices (choice, correct, question_id) "\
+                    "VALUES (:choice, :correct, :question_id)"
+                db.session.execute(sql, {"choice":choice, "correct":correct, \
+                    "question_id":question_id})
         db.session.commit()
         return True
     except:
@@ -37,4 +40,21 @@ def get_choices(question_id):
     result = db.session.execute(sql, {"question_id":question_id})
     choices = result.fetchall()
     return choices
+
+def check_correct(choice_id):
+    sql = "SELECT correct FROM choices WHERE id=:choice_id"
+    result = db.session.execute(sql, {"choice_id":choice_id})
+    correct = result.fetchone()
+    return correct[0]
+
+def new_answer(course_id, student_id, choice_id):
+    try:
+        sql = "INSERT INTO answers (course_id, student_id, choice_id, sent_at)"\
+            " VALUES (:course_id, :student_id, :choice_id, NOW())"
+        db.session.execute(sql, {"course_id":course_id, "student_id":student_id, \
+            "choice_id":choice_id})
+        db.session.commit()
+        return True
+    except:
+        return False
 
