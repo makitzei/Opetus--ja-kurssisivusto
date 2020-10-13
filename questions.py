@@ -47,14 +47,22 @@ def check_correct(choice_id):
     correct = result.fetchone()
     return correct[0]
 
-def new_answer(course_id, student_id, choice_id):
+def new_answer(course_id, student_id, question_id, choice_id):
     try:
-        sql = "INSERT INTO answers (course_id, student_id, choice_id, sent_at)"\
-            " VALUES (:course_id, :student_id, :choice_id, NOW())"
+        sql = "INSERT INTO answers (course_id, student_id, question_id, choice_id, sent_at)"\
+            " VALUES (:course_id, :student_id, :question_id, :choice_id, NOW())"
         db.session.execute(sql, {"course_id":course_id, "student_id":student_id, \
-            "choice_id":choice_id})
+            "question_id":question_id, "choice_id":choice_id})
         db.session.commit()
         return True
     except:
         return False
 
+def get_answers():
+    sql = "SELECT courses.title, users.firstname, users.lastname, answers.sent_at "\
+        "FROM answers JOIN courses ON answers.course_id=courses.id "\
+        "JOIN users ON answers.student_id=users.id "\
+        "ORDER BY sent_at DESC"
+    result = db.session.execute(sql)
+    answers = result.fetchall()
+    return answers

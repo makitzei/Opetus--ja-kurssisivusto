@@ -25,3 +25,10 @@ def leave_course(student_id, course_id):
     except:
         return False
 
+def is_in_course(student_id, course_id):
+    courses = get_courses(student_id)
+    for course in courses:
+        if course[0] == course_id:
+            return True
+    return False
+

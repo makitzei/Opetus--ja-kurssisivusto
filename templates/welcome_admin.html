@@ -9,7 +9,7 @@
     <img src="static/admin.png" width="250">
     <h2>Moikka ylläpitäjä {{ name }}!</h2>
     <br>
-    Kurssit:
+    <b>Kurssit:</b>
     <ul>
         {% for course in courses %}
         <li>{{ course[1] }} <a href="/courses/{{ course[0] }}">Kurssisivulle</a> </li>
@@ -22,11 +22,23 @@
         {% endfor %}  
     </ul>
     <p>
-    Käyttäjät:
+    <b>Käyttäjät:</b>
     <ul>
         {% for user in users %}
             <li>{{ user[1] }} {{ user[2] }}, {{ user[5] }} <a href="/showuser/{{ user[0] }}">Muokkaa</a>
-                <br></li>
+            <br>
+            <br>
+            </li>
+        {% endfor %}
+    </ul>
+    <b>Viimeisimmät vastaukset:</b>
+    <ul>
+        {% for answer in answers %}
+            <li>{{ answer[0] }}, {{ answer[1] }} {{ answer[2] }}. 
+                Aika: {{ answer[3].strftime("%Y-%m-%d %H:%M:%S") }} 
+            <br>
+            <br>
+            </li>
         {% endfor %}
     </ul>
     

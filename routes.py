@@ -50,14 +50,17 @@ def welcome():
         courselist = courses.get_courses()
         userlist = users.get_users()
         userlist.sort(key=lambda x: x[5])
-        return render_template("welcome_admin.html", name = nimi, courses = courselist, users = userlist)
+        answerList = questions.get_answers()
+        return render_template("welcome_admin.html", name = nimi, courses = courselist, \
+            users = userlist, answers = answerList)
     elif users.is_teacher(id):
         course = courses.get_course_with_teacher(id)
         return render_template("welcome_teacher.html", id = id, name = nimi, courses = course)
     elif users.is_student(id):
         mycourselist = students.get_courses(id)
-        courselist = courses.get_courses()
-        return render_template("welcome_student.html", id = id, name = nimi, courses = courselist, mycourses = mycourselist)
+        courselist = courses.with_no_student(id)
+        return render_template("welcome_student.html", id = id, name = nimi, courses = courselist,\
+            mycourses = mycourselist)
     else:
         return render_template("error.html", message="Jokin meni vikaan")
 
@@ -100,7 +103,7 @@ def course(id):
     status = False
     if users.is_teacher(users.user_id()) or users.is_admin(users.user_id()):
         status = True
-    #get question and choices
+    #get questions and choices
     questionlist = questions.get_questions_with_course_id(id)
     return render_template("course.html", title=title, description = description, level=level, \
         content=content, keyword=keyword, id=id, questions=questionlist, status=status)
@@ -122,11 +125,15 @@ def newquestion(id):
         choices = request.form.getlist("choice")
         for choice in choices:
             if len(choice) > 500:
-                return render_template("error.html", message="Vastausvaihtoehto on liian pitkä, max. 500 merkkiä")
+                return render_template("error.html", \
+                    message="Vastausvaihtoehto on liian pitkä, max. 500 merkkiä")
         if len(question) > 500:
-            return render_template("error.html", message="Kysymys on liian pitkä, max. 500 merkkiä")
+            return render_template("error.html", \
+                message="Kysymys on liian pitkä, max. 500 merkkiä")
         if question == "" or len(choices) == 0:
-            return render_template("error.html", message="Kysymystä ei voi jättää tyhjäksi ja ainakin yksi vastausvaihtoehto pitää olla")
+            return render_template("error.html", \
+                message="Kysymystä ei voi jättää tyhjäksi ja ainakin yksi vastausvaihtoehto "\
+                    "pitää olla")
         if questions.new_question(question, course_id, choices):
             return redirect("/welcome")
         else:
@@ -146,8 +153,9 @@ def question(id,question_id):
     if request.method == "POST":
         course_id = id
         student_id = users.user_id()
+        question_id = question_id
         choice_id = request.form["answer"]
-        if questions.new_answer(course_id,student_id,choice_id):
+        if questions.new_answer(course_id,student_id,question_id,choice_id):
             return redirect("/courses/"+str(id))
         else:
             return render_template("error.html", message="Jokin epäonnistui vastaamisessa")
@@ -196,6 +204,7 @@ def showuser(id):
         lastname = user[2]
         username = user[3]
         status = user[5]
-        return render_template("showuser.html", id=id, firstname=firstname, lastname=lastname, username=username, status=status, allow=allow)
+        return render_template("showuser.html", id=id, firstname=firstname, lastname=lastname, \
+            username=username, status=status, allow=allow)
     else:
         return render_template("error.html", message="Sinulla ei ole oikeutta nähdä tätä sivua")

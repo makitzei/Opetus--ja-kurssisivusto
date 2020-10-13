@@ -10,7 +10,7 @@
     <img src="static/oppilas.png" width="250">
     <h2>Moikka oppilas {{ name }}!</h2>
     <p>
-    Omat kurssini:
+    <b>Omat kurssini:</b>
     <ul>
         {% for course in mycourses %}
         <li>{{ course[1] }} <a href="/courses/{{ course[0] }}">Kurssisivulle</a>    
@@ -31,9 +31,11 @@
 
     <ul>
         {% for course in courses %}
-        <li>{{ course[1] }} 
+        <li><b>{{ course[1] }} </b><br>
         <br>
-        <i>{{ course[2] }}</i>
+        Kuvaus: <i>{{ course[2] }}</i><br>
+        Vaikeusaste: {{ course[3] }}<br>
+        Aihealue: {{ course[4] }}
         <br>
         <br>
         <form action="/join" method="POST">

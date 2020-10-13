@@ -3,8 +3,10 @@ from flask import session
 
 def new_course(title, description, level, content, keyword, teacher_id):
     try:
-        sql = "INSERT INTO courses (title, description, level, content, keyword, teacher_id) VALUES (:title, :description, :level, :content, :keyword, :teacher_id)"
-        db.session.execute(sql, {"title":title, "description":description, "level":level,"content":content,"keyword":keyword,"teacher_id":teacher_id})
+        sql = "INSERT INTO courses (title, description, level, content, keyword, teacher_id) "\
+            "VALUES (:title, :description, :level, :content, :keyword, :teacher_id)"
+        db.session.execute(sql, {"title":title, "description":description, "level":level,\
+            "content":content,"keyword":keyword,"teacher_id":teacher_id})
         db.session.commit()
         return True
     except:
@@ -26,4 +28,13 @@ def get_course_with_id(id):
     sql = "SELECT * FROM courses WHERE id =:id"
     result = db.session.execute(sql, {"id":id})
     course = result.fetchone()
-    return course   
+    return course
+
+def with_no_student(student_id):
+    sql = "SELECT courses.id, courses.title, courses.description, courses.level, courses.keyword "\
+        "FROM courses "\
+        "JOIN student_course ON courses.id = student_course.course_id "\
+        "WHERE NOT student_course.student_id =:student_id"
+    result = db.session.execute(sql, {"student_id":student_id})
+    courses = result.fetchall()
+    return courses

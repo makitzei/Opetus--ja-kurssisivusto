@@ -34,6 +34,7 @@ CREATE TABLE answers (
     id SERIAL PRIMARY KEY,
     course_id INTEGER REFERENCES courses ON DELETE CASCADE, 
     student_id INTEGER REFERENCES users ON DELETE CASCADE,
+    question_id INTEGER REFERENCES questions ON DELETE CASCADE,
     choice_id INTEGER REFERENCES choices ON DELETE CASCADE,
     sent_at TIMESTAMP 
 );
