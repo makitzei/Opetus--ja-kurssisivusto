@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block title %}Etusivu{% endblock %}
+{% block content %}
+    <nav>
+      <ul>
+        <li><a href="/welcome">Etusivu</a></li>
+        <li><a href="/logout">Kirjaudu ulos</a></li>
+      </ul>
+    </nav>
+    <br>
+    <br>
+    Sinun vastauksesi oli {{ result }}.
+    <h2>{{ question }}</h2>
+    <p>
+    Vastauksesi: {{ choice }}
+    <p>
+{% endblock %}

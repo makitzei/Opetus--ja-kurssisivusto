@@ -4,6 +4,7 @@ import courses
 import questions
 import students
 import admin
+import results
 from flask import render_template, request, session, redirect
 from werkzeug.security import check_password_hash, generate_password_hash
 from db import db
@@ -143,20 +144,19 @@ def newquestion(id):
 
 @app.route("/courses/<int:id>/question/<int:question_id>", methods=["GET", "POST"])
 def question(id,question_id):
-
     if request.method == "GET":
         question = questions.get_question(question_id)
         choicesList = questions.get_choices(question_id)
         return render_template("question.html", choices = choicesList, \
             question_id=question_id, question = question[0], id = id)
-
     if request.method == "POST":
         course_id = id
         student_id = users.user_id()
         question_id = question_id
         choice_id = request.form["answer"]
         if questions.new_answer(course_id,student_id,question_id,choice_id):
-            return redirect("/courses/"+str(id))
+            answer_id = questions.new_answer(course_id,student_id,question_id,choice_id)
+            return redirect("/courses/"+str(course_id)+"/question/"+str(question_id)+"/result/"+str(answer_id))
         else:
             return render_template("error.html", message="Jokin epäonnistui vastaamisessa")
 
@@ -208,3 +208,13 @@ def showuser(id):
             username=username, status=status, allow=allow)
     else:
         return render_template("error.html", message="Sinulla ei ole oikeutta nähdä tätä sivua")
+
+@app.route("/courses/<int:id>/question/<int:question_id>/result/<int:answer_id>", methods=["GET"])
+def result(id,question_id,answer_id):
+    question = questions.get_question(question_id)[0]
+    choice = results.get_result(answer_id)
+    choice_text = choice[0]
+    result = "VÄÄRIN"
+    if choice[1]:
+        result = "OIKEIN"
+    return render_template("result.html", result=result, question=question, choice=choice_text)

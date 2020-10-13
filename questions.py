@@ -50,11 +50,12 @@ def check_correct(choice_id):
 def new_answer(course_id, student_id, question_id, choice_id):
     try:
         sql = "INSERT INTO answers (course_id, student_id, question_id, choice_id, sent_at)"\
-            " VALUES (:course_id, :student_id, :question_id, :choice_id, NOW())"
-        db.session.execute(sql, {"course_id":course_id, "student_id":student_id, \
+            " VALUES (:course_id, :student_id, :question_id, :choice_id, NOW()) RETURNING id"
+        result = db.session.execute(sql, {"course_id":course_id, "student_id":student_id, \
             "question_id":question_id, "choice_id":choice_id})
+        answer_id = result.fetchone()[0]
         db.session.commit()
-        return True
+        return answer_id
     except:
         return False
 
