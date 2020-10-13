@@ -58,7 +58,7 @@ def welcome():
         return render_template("welcome_teacher.html", id = id, name = nimi, courses = course)
     elif users.is_student(id):
         mycourselist = students.get_courses(id)
-        courselist = courses.with_no_student(id)
+        courselist = courses.get_courses()
         return render_template("welcome_student.html", id = id, name = nimi, courses = courselist,\
             mycourses = mycourselist)
     else:

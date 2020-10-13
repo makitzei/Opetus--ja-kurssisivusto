@@ -62,7 +62,7 @@ def get_answers():
     sql = "SELECT courses.title, users.firstname, users.lastname, answers.sent_at "\
         "FROM answers JOIN courses ON answers.course_id=courses.id "\
         "JOIN users ON answers.student_id=users.id "\
-        "ORDER BY sent_at DESC"
+        "ORDER BY sent_at DESC LIMIT 5"
     result = db.session.execute(sql)
     answers = result.fetchall()
     return answers

@@ -34,7 +34,7 @@ def with_no_student(student_id):
     sql = "SELECT courses.id, courses.title, courses.description, courses.level, courses.keyword "\
         "FROM courses "\
         "JOIN student_course ON courses.id = student_course.course_id "\
-        "WHERE NOT student_course.student_id =:student_id"
+        "WHERE student_course.student_id NOT IN (:student_id)"
     result = db.session.execute(sql, {"student_id":student_id})
     courses = result.fetchall()
     return courses
