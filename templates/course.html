@@ -21,18 +21,24 @@
 <hr>
 <ol>
 {% for question in questions %}
-    <li>kysymys: {{ question[1] }} </li>
-    <!--Vaihtoehdot ja kysymykset pitänee lisätä lomakkeena. TODO!
-    <ul>
-    {% for choice in choices %}
-        <li>{{ choice[1] }} </li>
-    {% endfor %}
-    </ul>-->
+    <li>kysymys: {{ question[1] }}
+      <p>
+      <a href="/question/{{ question[0] }}">Vastaa</a>
+    </li>
 {% endfor %}
 </ol>
 <hr>
 {% if status == True %}
 <a href="/courses/{{ id }}/newquestion">Luo uusi kysymys</a>
+<p>
+<br>
+<br>
+<br>
+      <form action="/deletecourse" method="POST">
+          <input type="hidden" name="course_id" value="{{ id}}">
+          <input type="submit" value="Poista kurssi">
+      </form>
+<p>
 {% endif %}
 
 
