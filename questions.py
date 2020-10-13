@@ -26,10 +26,15 @@ def get_questions_with_course_id(id):
     questions = result.fetchall()
     return questions
 
-"""
+def get_question(id):
+    sql = "SELECT question FROM questions WHERE id=:id"
+    result = db.session.execute(sql, {"id":id})
+    question = result.fetchone()
+    return question
+
 def get_choices(question_id):
     sql = "SELECT * FROM choices WHERE question_id=:question_id"
     result = db.session.execute(sql, {"question_id":question_id})
     choices = result.fetchall()
     return choices
-"""
+

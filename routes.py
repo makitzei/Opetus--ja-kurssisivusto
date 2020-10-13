@@ -24,7 +24,8 @@ def register():
         username=request.form["username"] 
         password=request.form["password"]
         if len(firstname) > 30 or len(lastname) > 30 or len(username) > 30 or len(password) > 30:
-            return render_template("error.html", message="Jokin rekisteröinnin syötteistä on liian pitkä. Maksimi on 30 merkkiä.")
+            return render_template("error.html", message="Jokin rekisteröinnin syötteistä "\
+                "on liian pitkä. Maksimi on 30 merkkiä.")
         if firstname == "" or lastname == "" or status == "" or username == "" or password == "":
             return render_template("error.html", message="Kenttää ei voi jättää tyhjäksi.")
         if users.register(firstname,lastname,username,password,status):
@@ -77,7 +78,9 @@ def new():
         keyword = request.form["keyword"]
         teacher_id = users.user_id()
         if len(title) > 100 or len(content) > 10000 or len(keyword) > 30 or len(description) > 250:
-            return render_template("error.html", message="Jokin syötteistä on liian pitkä. Otsikko max. 100, kuvaus max. 250, kurssiteksti max. 10 000 ja avainsana max. 30 merkkiä.")
+            return render_template("error.html", message="Jokin syötteistä on liian pitkä. " \
+                "Otsikko max. 100, kuvaus max. 250, kurssiteksti max. 10 000 "\
+                "ja avainsana max. 30 merkkiä.")
         if title == "" or content == "" or keyword == "" or description == "":
             return render_template("error.html", message="Kenttää ei voi jättää tyhjäksi.")
         if courses.new_course(title,description,level,content,keyword,teacher_id):
@@ -99,7 +102,8 @@ def course(id):
         status = True
     #get question and choices
     questionlist = questions.get_questions_with_course_id(id)
-    return render_template("course.html", title=title, description = description, level=level, content=content, keyword=keyword, id=id, questions=questionlist, status=status)
+    return render_template("course.html", title=title, description = description, level=level, \
+        content=content, keyword=keyword, id=id, questions=questionlist, status=status)
 
 @app.route("/courses/<int:id>/newquestion", methods=["GET", "POST"])
 def newquestion(id):
@@ -177,4 +181,13 @@ def showuser(id):
     else:
         return render_template("error.html", message="Sinulla ei ole oikeutta nähdä tätä sivua")
 
-    
+@app.route("/question/<int:question_id>", methods=["GET", "POST"])
+def question(question_id):
+    if request.method == "GET":
+        question = questions.get_question(question_id)
+        choicesList = questions.get_choices(question_id)
+        return render_template("question.html", choices = choicesList, \
+            question_id=question_id, question = question[0])
+
+    if request.method == "POST":
+        return redirect("/welcome")

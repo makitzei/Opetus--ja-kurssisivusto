@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block title %}Kurssisivu{% endblock %}
+{% block content %}
+
+<nav>
+    <ul>
+      <li><a href="/welcome">Etusivu</a></li>
+      <li><a href="/logout">Kirjaudu ulos</a></li>
+    </ul>
+</nav>
+<h2>{{ question }}</h2>
+<form action="/question/{{ question_id }}" method="POST">
+{% for choice in choices %}
+<p>
+<input type="checkbox" name="answer" value="{{ choice[0] }}"> {{ choice[1] }}
+{% endfor %}
+<p>
+<input type="submit" value="Lukitse vastaus">
+</form>
+
+{% endblock %}
