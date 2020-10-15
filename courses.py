@@ -30,11 +30,21 @@ def get_course_with_id(id):
     course = result.fetchone()
     return course
 
-def with_no_student(student_id):
-    sql = "SELECT courses.id, courses.title, courses.description, courses.level, courses.keyword "\
-        "FROM courses "\
-        "JOIN student_course ON courses.id = student_course.course_id "\
-        "WHERE student_course.student_id NOT IN (:student_id)"
-    result = db.session.execute(sql, {"student_id":student_id})
-    courses = result.fetchall()
-    return courses
+def students_in_course(course_id):
+    sql = "SELECT users.id, users.firstname, users.lastname "\
+        "FROM users JOIN student_course ON users.id = student_course.student_id "\
+        "JOIN courses ON student_course.course_id = courses.id "\
+        "WHERE courses.id =:course_id"
+    result = db.session.execute(sql, {"course_id":course_id})
+    students = result.fetchall()
+    return students
+
+#---Not helpful, no use---
+#def with_no_student(student_id):
+#    sql = "SELECT courses.id, courses.title, courses.description, courses.level, courses.keyword "\
+#        "FROM courses "\
+#        "JOIN student_course ON courses.id = student_course.course_id "\
+#        "WHERE student_course.student_id NOT IN (:student_id)"
+#    result = db.session.execute(sql, {"student_id":student_id})
+#    courses = result.fetchall()
+#    return courses

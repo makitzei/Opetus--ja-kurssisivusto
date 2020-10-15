@@ -5,6 +5,9 @@
   <ul>
     <li><a href="/welcome">Etusivu</a></li>
     <li><a href="/logout">Kirjaudu ulos</a></li>
+    {% if status %}
+    <li><a href="/courses/{{ id }}/students">Opiskelijat</a></li>
+    {% endif %}
   </ul>
 </nav>
 
@@ -29,7 +32,7 @@
 {% endfor %}
 </ol>
 <hr>
-{% if status == True %}
+{% if status %}
 <a href="/courses/{{ id }}/newquestion">Luo uusi kysymys</a>
 <p>
 <br>

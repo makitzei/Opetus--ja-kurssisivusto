@@ -220,4 +220,14 @@ def result(id,question_id,answer_id):
     result = "VÄÄRIN"
     if choice[1]:
         result = "OIKEIN"
-    return render_template("result.html", result=result, question=question, choice=choice_text, id = id, question_id = question_id)
+    return render_template("result.html", result=result, question=question, choice=choice_text, \
+        id = id, question_id = question_id)
+
+@app.route("/courses/<int:id>/students", methods=["GET"])
+def studentsList(id):
+    allow = False
+    if users.is_admin(users.user_id()) or users.is_teacher(users.user_id()):
+        allow = True
+    students = courses.students_in_course(id)
+    title = courses.get_course_with_id(id)[1]
+    return render_template("students.html", title=title, students=students, allow = allow, id=id)

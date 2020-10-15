@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block title %}Kurssisivu{% endblock %}
+{% block content %}
+<nav>
+  <ul>
+    <li><a href="/welcome">Etusivu</a></li>
+    <li><a href="/logout">Kirjaudu ulos</a></li>
+    <li><a href="/courses/{{ id }}">Kurssisivulle</a></li>
+  </ul>
+</nav>
+{% if allow %}
+<h2>Kurssin <i>{{ title }}</i> opiskelijat:</h2>
+<p>
+<ul>
+    {% for student in students %}
+    <li>{{ student[1] }} {{ student[2] }}</li>
+    {% endfor %}
+</ul>
+{% else %}
+<br>
+<b>Oppilaalla ei ole oikeutta nähdä oppilaslistaa.</b>
+{% endif %}
+
+{% endblock %}

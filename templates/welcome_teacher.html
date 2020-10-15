@@ -16,7 +16,10 @@
 Omat kurssini:
 <ul>
     {% for course in courses %}
-    <li>Otsikko: {{ course[1] }} <a href="/courses/{{ course[0] }}">Kurssisivulle</a> </li>
+    <li>{{ course[1] }} 
+      <a href="/courses/{{ course[0] }}">Kurssisivulle</a>
+      <a href="/courses/{{ course[0] }}/students">Opiskelijat</a>  
+    </li>
     {% endfor %}
 </ul>
 
