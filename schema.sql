@@ -42,7 +42,8 @@ CREATE TABLE answers (
 CREATE TABLE student_course (
     id SERIAL PRIMARY KEY,
     student_id INTEGER REFERENCES users ON DELETE CASCADE ,
-    course_id INTEGER REFERENCES courses ON DELETE CASCADE 
+    course_id INTEGER REFERENCES courses ON DELETE CASCADE,
+    CONSTRAINT ux_student_course UNIQUE (student_id,course_id) 
 );
 
 INSERT INTO users (firstname,lastname,username,password,status) VALUES ('Testi','Käyttäjä','admin','pass','admin');
