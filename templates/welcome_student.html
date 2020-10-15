@@ -14,13 +14,10 @@
     <ul>
         {% for course in mycourses %}
         <li>{{ course[1] }} <a href="/courses/{{ course[0] }}">Kurssisivulle</a>    
-        <br>
-        <br>
         <form action="/leave" method="POST">
             <input type="hidden" name="course_id" value="{{ course[0] }}">
             <input type="submit" value="Poistu kurssilta">
         </form>
-        <p>
         </li>
         {% endfor %}
     </ul>
@@ -28,21 +25,16 @@
     <br>
     <br>
     <b>Saatavilla olevia kursseja: </b>
-
     <ul>
         {% for course in courses %}
         <li><b>{{ course[1] }} </b><br>
-        <br>
         Kuvaus: <i>{{ course[2] }}</i><br>
         Vaikeusaste: <i>{{ course[3] }}</i><br>
-        Aihealue: <i>{{ course[5] }}</i>
-        <br>
-        <br>
+        Aihealue: <i>{{ course[5] }}</i><br>
         <form action="/join" method="POST">
             <input type="hidden" name="course_id" value="{{ course[0] }}">
             <input type="submit" value="Liity kurssille">
         </form>
-        <p>
         </li>
         {% endfor %}
     </ul>

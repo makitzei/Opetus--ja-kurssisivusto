@@ -18,3 +18,4 @@ def delete_user(id):
         return True
     except:
         return False
+

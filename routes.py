@@ -136,7 +136,7 @@ def newquestion(id):
                 message="Kysymystä ei voi jättää tyhjäksi ja ainakin yksi vastausvaihtoehto "\
                     "pitää olla")
         if questions.new_question(question, course_id, choices):
-            return redirect("/welcome")
+            return redirect("/courses/"+str(course_id))
         else:
             return render_template("error.html", message="Kysymyksen luominen ei onnistunut")
 
@@ -174,11 +174,19 @@ def join():
 
 @app.route("/leave", methods=["POST"])
 def leave():
-    course_id = request.form["course_id"]
-    if students.leave_course(users.user_id(),course_id):
-        return redirect("/welcome")
+    if users.is_teacher(users.user_id()) or users.is_admin(users.user_id()):
+        course_id = request.form["course_id"]
+        student_id = request.form["student_id"]
+        if students.leave_course(student_id,course_id):
+            return redirect("/courses/"+str(course_id)+"/students")
+        else:
+            return render_template("error.html", message="Kurssilta poistaminen ei onnistunut")
     else:
-        return render_template("error.html", message="Kurssilta poistuminen ei onnistunut")
+        course_id = request.form["course_id"]
+        if students.leave_course(users.user_id(),course_id):
+            return redirect("/welcome")
+        else:
+            return render_template("error.html", message="Kurssilta poistuminen ei onnistunut")
 
 @app.route("/deletecourse", methods=["POST"])
 def deletecourse():

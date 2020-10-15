@@ -27,7 +27,6 @@
     <li>kysymys: {{ question[1] }}
       <p>
       <a href="/courses/{{ id }}/question/{{ question[0] }}">Vastaa</a>
-      <br>
     </li>
 {% endfor %}
 </ol>
@@ -35,7 +34,6 @@
 {% if status %}
 <a href="/courses/{{ id }}/newquestion">Luo uusi kysymys</a>
 <p>
-<br>
 <br>
 <br>
       <form action="/deletecourse" method="POST">

@@ -5,6 +5,7 @@
     <ul>
       <li><a href="/welcome">Etusivu</a></li>
       <li><a href="/logout">Kirjaudu ulos</a></li>
+      <li><a href="/courses/{{ id }}">Takaisin kurssisivulle</a></li>
     </ul>
 </nav>
 
@@ -12,27 +13,27 @@
 
 <br>
 <form action="/courses/{{ id }}/newquestion" method="POST" onsubmit="return check(this)">
-<p>Kysymys:<br>
-<textarea name="question" rows="5" cols="60"></textarea></p>
-<p>Vaihtoehto 1:<br>
-<input type="text" name="choice" size="50"></p>
-<input type="radio" name="truefalse1" value="TRUE"> oikein
-<input type="radio" name="truefalse1" value="FALSE" checked required/> väärin
-<p>Vaihtoehto 2:<br>
-<input type="text" name="choice" size="50"></p>
-<input type="radio" name="truefalse2" value="TRUE"> oikein
-<input type="radio" name="truefalse2" value="FALSE" checked required/> väärin
-<p>Vaihtoehto 3:<br>
-<input type="text" name="choice" size="50"></p>
-<input type="radio" name="truefalse3" value="TRUE"> oikein
-<input type="radio" name="truefalse3" value="FALSE" checked required/> väärin
-<p>Vaihtoehto 4:<br>
-<input type="text" name="choice" size="50"></p>
-<input type="radio" name="truefalse4" value="TRUE"> oikein
-<input type="radio" name="truefalse4" value="FALSE" checked required/> väärin
-<p>
-<input type="submit" value="Luo kysymys">
-<input type="hidden" name="id" value="{{ id }}">
+  <p>Kysymys:<br>
+  <textarea name="question" rows="5" cols="60"></textarea></p>
+  <p>Vaihtoehto 1:<br>
+  <input type="text" name="choice" size="50"></p>
+  <input type="radio" name="truefalse1" value="TRUE"> oikein
+  <input type="radio" name="truefalse1" value="FALSE" checked required/> väärin
+  <p>Vaihtoehto 2:<br>
+  <input type="text" name="choice" size="50"></p>
+  <input type="radio" name="truefalse2" value="TRUE"> oikein
+  <input type="radio" name="truefalse2" value="FALSE" checked required/> väärin
+  <p>Vaihtoehto 3:<br>
+  <input type="text" name="choice" size="50"></p>
+  <input type="radio" name="truefalse3" value="TRUE"> oikein
+  <input type="radio" name="truefalse3" value="FALSE" checked required/> väärin
+  <p>Vaihtoehto 4:<br>
+  <input type="text" name="choice" size="50"></p>
+  <input type="radio" name="truefalse4" value="TRUE"> oikein
+  <input type="radio" name="truefalse4" value="FALSE" checked required/> väärin
+  <p>
+  <input type="submit" value="Luo kysymys">
+  <input type="hidden" name="id" value="{{ id }}">
 </form>
 
 
