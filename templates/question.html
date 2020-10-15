@@ -6,6 +6,7 @@
     <ul>
       <li><a href="/welcome">Etusivu</a></li>
       <li><a href="/logout">Kirjaudu ulos</a></li>
+      <li><a href="/courses/{{ id }}">Takaisin kurssisivulle</a></li>
     </ul>
 </nav>
 <h2>{{ question }}</h2>
@@ -15,7 +16,11 @@
 <input type="checkbox" name="answer" value="{{ choice[0] }}"> {{ choice[1] }}
 {% endfor %}
 <p>
+{% if allow %}
 <input type="submit" value="Lukitse vastaus">
+{% else %}
+<b>Esikatselutila: et voi lähettää vastausta</b>
+{% endif %}
 </form>
 
 {% endblock %}

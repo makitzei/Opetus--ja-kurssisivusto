@@ -147,17 +147,20 @@ def question(id,question_id):
     if request.method == "GET":
         question = questions.get_question(question_id)
         choicesList = questions.get_choices(question_id)
+        allow = False
+        if users.is_student(users.user_id()):
+            allow = True
         return render_template("question.html", choices = choicesList, \
-            question_id=question_id, question = question[0], id = id)
+            question_id=question_id, question = question[0], id = id, allow = allow)
     if request.method == "POST":
         course_id = id
         student_id = users.user_id()
         question_id = question_id
         choice_id = request.form["answer"]
-        if questions.new_answer(course_id,student_id,question_id,choice_id):
+        try:
             answer_id = questions.new_answer(course_id,student_id,question_id,choice_id)
             return redirect("/courses/"+str(course_id)+"/question/"+str(question_id)+"/result/"+str(answer_id))
-        else:
+        except:
             return render_template("error.html", message="Jokin epäonnistui vastaamisessa")
 
 
@@ -217,4 +220,4 @@ def result(id,question_id,answer_id):
     result = "VÄÄRIN"
     if choice[1]:
         result = "OIKEIN"
-    return render_template("result.html", result=result, question=question, choice=choice_text)
+    return render_template("result.html", result=result, question=question, choice=choice_text, id = id, question_id = question_id)
