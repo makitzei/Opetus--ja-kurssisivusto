@@ -2,7 +2,7 @@
 
 Helsingin yliopiston Tietokantasovellus-kurssin harjoitustyö syksyllä 2020. Kurssi- ja opetussivusto, johon rekisteröidytään joko opettajaksi tai oppilaaksi. Yhdet ylläpitäjätunnukset syntyvät valmiiksi tietokantaa luotaessa.
 
-## Sovelluksen toimivat toiminnallisuudet:
+### Sovelluksen toimivat toiminnallisuudet:
 * Käyttäjä voi rekisteröityä tai kirjautua sovellukseen. Salasana kryptataan tietokantaan.
 * Kirjautunutta käyttäjää tervehtii aloitussivu, jossa on statukseen sopiva kuva.
 
@@ -26,7 +26,7 @@ Ylläpitäjä voi
 
 Käytettävyydestä ja toimivuudesta on pyritty huolehtimaan syötteiden validoinneilla ja oikeuksia on rajoitettu esimerkiksi niin, että oppilailla ei ole mahdollisuutta nähdä oppilaslistoja eikä opettajien tai ylläpitäjien ole mahdollista vastata kysymyksiin.
 
-Sovelluksesta jäi toteuttamatta:
+** Sovelluksesta jäi toteuttamatta:**
 * Oppilaiden edistymistä ei voi seurata mistään.
 * Käyttäjän etusivulle olisi ollut hyvä listata vain esimerkiksi viisi tuoreinta kurssia tai käyttäjää.
 * Kaikki kurssit tai käyttäjät olisivat voineet listautua omille sivuilleen, joista niitä olis voinut hakea nimellä tai avainsanalla.
