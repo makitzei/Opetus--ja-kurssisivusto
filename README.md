@@ -2,19 +2,34 @@
 
 Helsingin yliopiston Tietokantasovellus-kurssin harjoitustyö syksyllä 2020. Kurssi- ja opetussivusto, johon rekisteröidytään joko opettajaksi tai oppilaaksi. Yhdet ylläpitäjätunnukset syntyvät valmiiksi tietokantaa luotaessa.
 
-Sovelluksen toimivat toiminnallisuudet:
+## Sovelluksen toimivat toiminnallisuudet:
 * Käyttäjä voi rekisteröityä tai kirjautua sovellukseen. Salasana kryptataan tietokantaan.
 * Kirjautunutta käyttäjää tervehtii aloitussivu, jossa on statukseen sopiva kuva.
-* Aloitussivulta on opettajalla mahdollisuus luoda uusi kurssi, joka sisältää otsikon, tekstiä, vaikeusasteen ja avainsanan. Aloitussivulle myös listautuvat kaikki omat kurssit.
-* Kurssilistauksen kautta opettajan on mahdollista päästä kurssisivulle, josta voi luoda kysymyksiä kurssiin liittyen. Kysymykset ja vastausvaihtoehdot tallentuvat tietokantaan, vaikka vastausvahtoehdot eivät vielä listaudu kysymysten alle.
-* Oppilas voi liittyä kursseille ja omat kurssit näkyvät listauksena etusivulla. Liityttyään kurssille oppilas voi nähdä kurssin sisällön ja kysymykset.
-* Ylläpitäjä näkee kaikkien käyttäjien ja kurssien tiedot ja voi poistaa käyttäjiä ja kursseja.
 
-Vielä tekemättä:
-* Ulkoasuun on panostettu hieman, mutta vielä on tehtävää
-* Kaikki kursseihin liittyvät hakutoiminnot on toteuttamatta: kurssien hakeminen nimellä tai avainsanalla.
-* Kysymysten vastausvaihtoehdot eivät ole näkyvissä eikä niihin pysty vastaamaan
-* Oppilaiden edistymistä ei voi seurata vielä mistään.
+Opettaja voi
+* luoda uusia kursseja, jotka sisältävät otsikon, tekstiä, vaikeusasteen ja avainsanan
+* luoda kurssille kysymyksiä, joissa on enintään neljä vastausvaihtoehtoa, joista moni vaihtoehto voi olla oikein
+* poistaa omia kurssejaan
+* poistaa oppilaita kurssilta.
+ 
+Oppilas voi
+* liittyä kursseille
+* nähdä omat ja saatavilla olevat kurssit listauksena etusivulla
+* nähdä kurssiin liittyvät kysymykset kurssisivulla
+* vastata yksittäisiin kysymyksiin kerran tai useammin ja saada välittömän palautteen, vastasiko oikein.
+
+Ylläpitäjä voi
+* nähdä kaikkien käyttäjien ja kurssien tiedot
+* poistaa käyttäjiä itseään lukuun ottamatta
+* poistaa kursseja
+* nähdä tietoja viidestä viimeisimmästä vastauksesta, joita oppilaat ovat antaneet
+
+Käytettävyydestä ja toimivuudesta on pyritty huolehtimaan syötteiden validoinneilla ja oikeuksia on rajoitettu esimerkiksi niin, että oppilailla ei ole mahdollisuutta nähdä oppilaslistoja eikä opettajien tai ylläpitäjien ole mahdollista vastata kysymyksiin.
+
+Sovelluksesta jäi toteuttamatta:
+* Oppilaiden edistymistä ei voi seurata mistään.
+* Käyttäjän etusivulle olisi ollut hyvä listata vain esimerkiksi viisi tuoreinta kurssia tai käyttäjää.
+* Kaikki kurssit tai käyttäjät olisivat voineet listautua omille sivuilleen, joista niitä olis voinut hakea nimellä tai avainsanalla.
 
 Sovellusta voi testata Herokussa osoitteessa https://opetussovellus1.herokuapp.com/. Käyttäjä voi itse luoda oppilas- tai opettajatunnukset. Admin-käyttäjän tunnukset ovat: käyttäjätunnus _admin_ ja salasana _pass_ 
 
